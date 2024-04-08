@@ -17,12 +17,6 @@ const Map = memo(function Map(){
 
   const { data } = useLoaderData()
   const [map, setMap] = useState(null);
-  const [busPolygon, setBusPolygon] = useState([])
-
-  useEffect(() => {
-    setBusPolygon(data.shape)
-  }, [data])
-  
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -46,7 +40,7 @@ const Map = memo(function Map(){
         onUnmount={onUnmount}
       >
         <Polyline
-          path={busPolygon}
+          path={data ? data.shape : []}
         />
       </GoogleMap>
     ) : <></>;

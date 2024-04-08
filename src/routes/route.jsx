@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom"
-import Map, { loader as mapLoader } from "../components/Map";
 import App from "../App";
+import Map, { loader as mapLoader } from "../components/Map";
 
 const router = createBrowserRouter([
   {
@@ -8,8 +8,9 @@ const router = createBrowserRouter([
     element: <App/>,
     children: [
       {
-        path:'/',
-        element: <Map/>
+        path: '/',
+        element: <Map/>,
+        loader: mapLoader
       },
       {
         path: ':route_id',
@@ -18,6 +19,6 @@ const router = createBrowserRouter([
       }
     ]
   },
-])
+]);
 
 export default router;
