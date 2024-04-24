@@ -17,11 +17,19 @@ const Map = memo(function Map(){
 
   const { data } = useLoaderData()
   const [map, setMap] = useState(null);
+  const [polyData, setpolyData] = useState([])  
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_API_KEY
   });
+
+  useEffect(() => {    
+    setpolyData(data)
+
+    return () => setpolyData(null)
+  }, [data])
+  
   
   const onLoad = useCallback(function callback(map) {
     setMap(map);
@@ -36,11 +44,13 @@ const Map = memo(function Map(){
         mapContainerStyle={containerStyle}
         center={center}
         zoom={13}
+
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
         <Polyline
-          path={data ? data.shape : []}
+          path={polyData.shape}
+          onUnmount={(line) => {line.setMap(null)}}
         />
       </GoogleMap>
     ) : <></>;

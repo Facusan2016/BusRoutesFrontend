@@ -5,7 +5,7 @@ import './App.css'
 function App() {
 
   return (
-    <main className='w-screen h-screen flex flex-row items-center overflow-hidden'>
+    <main className='w-screen h-screen flex flex-col-reverse md:flex-row items-center overflow-hidden'>
       <BusesList/>
       <Outlet/>
     </main>

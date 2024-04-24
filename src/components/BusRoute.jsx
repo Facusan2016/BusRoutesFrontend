@@ -7,25 +7,21 @@ export const BusRoute = ({
   agency_id
 }) => {
   return (
-    <li
-      key={route_id}
-      className='
-        w-full p-5 border border-gray-300 rounded-xl
-        hover:bg-gray-400 hover:text-white
-        transition-colors
-      '
+    <NavLink
+      to={`${route_id}`}
+      key={ route_id }
+      className={({ isActive }) => (
+        `min-w-fit p-5 border bg-gray-200 border-gray-300 rounded-xl
+        transition-colors md:min-w-full
+        ${ isActive ? 'bg-gray-500 text-white' : ''}
+      `)}
     >
-      <NavLink
-        to={`${route_id}`}
-        className={({isActive}) => isActive ? 'bg-red-400': ''}
-      >
-        
-        <h3 className='font-bold'>{route_short_name}</h3>
-        <p className='text-sm text-left mt-2'>
-          {route_long_name}
-        </p>
+      
+      <h3 className='font-bold'>{route_short_name}</h3>
+      <p className='text-sm text-left mt-2'>
+        {route_long_name}
+      </p>
 
-      </NavLink>
-    </li>
+    </NavLink>
   )
 }

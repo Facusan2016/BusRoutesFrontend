@@ -1,0 +1,9 @@
+name: busappfrontend
+services:
+  frontend:
+    build: ./
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/home/app
+    command: "npm run preview"
